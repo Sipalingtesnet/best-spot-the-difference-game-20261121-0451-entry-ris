@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Twin Lanterns — Spot the Difference</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./bootstrap.js"></script>
+</head>
+<body>
+  <main class="game-shell" id="game-shell">
+
+    <header class="title-bar">
+      <h1 class="game-title">Twin Lanterns</h1>
+      <p class="round-name" id="round-name">Night-Market Lantern Stall</p>
+    </header>
+
+    <section class="top-bar" aria-label="Round status">
+      <div class="stat stat-counter">
+        <span class="stat-label">Found</span>
+        <span class="stat-value" id="found-count">0 / 7</span>
+        <span class="stat-sub" id="remain-count">7 remain</span>
+      </div>
+      <div class="stat stat-timer">
+        <span class="stat-label">Time</span>
+        <span class="stat-value" id="timer">3:00</span>
+      </div>
+      <div class="stat stat-score">
+        <span class="stat-label">Score</span>
+        <span class="stat-value" id="score">0</span>
+        <span class="stat-sub" id="streak">streak 0</span>
+      </div>
+      <div class="button-row">
+        <button type="button" class="game-button hint-button" id="hint-button">Hint (H)</button>
+        <button type="button" class="game-button mute-button" id="mute-button" aria-pressed="false">Sound on (M)</button>
+        <button type="button" class="game-button restart-button" id="restart-button">Restart (R)</button>
+      </div>
+    </section>
+
+    <section class="pictures-row" aria-label="The two pictures">
+      <figure class="picture-panel" id="left-panel">
+        <figcaption class="picture-caption">Picture A</figcaption>
+        <canvas id="left-picture" width="560" height="420" aria-label="Left picture"></canvas>
+      </figure>
+      <figure class="picture-panel" id="right-panel">
+        <figcaption class="picture-caption">Picture B</figcaption>
+        <canvas id="right-picture" width="560" height="420" aria-label="Right picture"></canvas>
+      </figure>
+    </section>
+
+    <p class="message-line" id="message-line" role="status">Click a difference on either picture, or steer the crosshair with the arrow keys and press Enter.</p>
+
+  </main>
+</body>
+</html>

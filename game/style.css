@@ -1,0 +1,221 @@
+/* Twin Lanterns — warm dusk theme.
+   One job: dress the game shell, top bar, picture panels, buttons and message line. */
+
+:root {
+  --dusk-deep: #2b1b3d;
+  --dusk-mid: #4a2545;
+  --dusk-warm: #7a3b52;
+  --ember: #ff9d5c;
+  --lantern-gold: #ffcf7d;
+  --panel-cream: #fff3e0;
+  --panel-edge: #e8b98a;
+  --ink: #3a2430;
+  --ink-soft: #6d4a56;
+  --marker-red: #e5484d;
+  --good-green: #3e8e5a;
+  --radius-big: 22px;
+  --radius-small: 14px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Trebuchet MS", "Comic Sans MS", "Segoe UI", Verdana, sans-serif;
+  color: var(--panel-cream);
+  background:
+    radial-gradient(120% 90% at 50% 110%, var(--dusk-warm) 0%, var(--dusk-mid) 45%, var(--dusk-deep) 100%);
+  display: flex;
+  justify-content: center;
+}
+
+.game-shell {
+  width: min(1280px, 100%);
+  padding: 10px 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ---- title bar ---- */
+
+.title-bar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.game-title {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--lantern-gold);
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+}
+
+.round-name {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ember);
+}
+
+/* ---- top bar: counter, timer, score, buttons ---- */
+
+.top-bar {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: rgba(0, 0, 0, 0.25);
+  border: 2px solid rgba(255, 207, 125, 0.35);
+  border-radius: var(--radius-big);
+  padding: 10px 14px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 110px;
+  background: var(--panel-cream);
+  color: var(--ink);
+  border-radius: var(--radius-small);
+  padding: 6px 14px;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.25);
+}
+
+.stat-label {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--ink-soft);
+}
+
+.stat-value {
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.stat-sub {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--dusk-warm);
+}
+
+.stat-timer .stat-value { color: var(--dusk-warm); }
+.stat-timer.is-low .stat-value { color: var(--marker-red); }
+
+.button-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+.game-button {
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--ink);
+  background: linear-gradient(180deg, var(--lantern-gold) 0%, var(--ember) 100%);
+  border: 2px solid rgba(0, 0, 0, 0.25);
+  border-radius: var(--radius-small);
+  padding: 10px 16px;
+  cursor: pointer;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.3);
+}
+
+.game-button:hover { filter: brightness(1.08); }
+.game-button:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3); }
+.game-button:focus-visible { outline: 3px solid var(--panel-cream); outline-offset: 2px; }
+
+.mute-button[aria-pressed="true"] {
+  background: linear-gradient(180deg, #c9b8a8 0%, #a08b7c 100%);
+}
+
+/* ---- picture panels ---- */
+
+.pictures-row {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+}
+
+.picture-panel {
+  margin: 0;
+  flex: 1 1 0;
+  max-width: 610px;
+  background: var(--panel-cream);
+  border-radius: var(--radius-big);
+  padding: 8px 8px 10px;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.3);
+}
+
+.picture-caption {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--ink-soft);
+  text-align: center;
+  padding-bottom: 4px;
+}
+
+.picture-panel canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-small);
+  border: 3px solid var(--panel-edge);
+  background: #1d1230;
+  cursor: crosshair;
+  touch-action: manipulation;
+}
+
+/* brief shake when the player clicks a wrong spot */
+.picture-panel.is-shaking { animation: panel-shake 0.3s linear; }
+
+@keyframes panel-shake {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(-7px); }
+  50%  { transform: translateX(6px); }
+  75%  { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+
+/* ---- message line ---- */
+
+.message-line {
+  margin: 0;
+  min-height: 26px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--lantern-gold);
+}
+
+.message-line.is-good { color: #9fe6b0; }
+.message-line.is-bad { color: #ff9a9e; }
+
+/* ---- small-window fallback: stack pictures, keep type big ---- */
+
+@media (max-width: 760px) {
+  .pictures-row { flex-direction: column; align-items: center; }
+  .picture-panel { width: 100%; max-width: 560px; }
+  .game-title { font-size: 26px; }
+  .round-name { font-size: 17px; }
+  .stat-value { font-size: 24px; }
+  .game-button { font-size: 15px; padding: 8px 12px; }
+  .button-row { margin-left: 0; }
+  .message-line { font-size: 16px; }
+}
